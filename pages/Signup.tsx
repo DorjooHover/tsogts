@@ -10,6 +10,7 @@ interface User {
 export default function Signup() {
     const [user, setUser] = useState<User>({email: '', password: '', message: ''})
     const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    const mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
     const handleUser = async(e: { preventDefault: () => void; }) => {
         e.preventDefault()
         try {
@@ -28,7 +29,9 @@ export default function Signup() {
         e.preventDefault()
         if(strongRegex.test(e.target.value)) {
             setUser((user) => ({...user, password: e.target.value}))
-        } else {
+        } else if(mediumRegex.test(e.target.value)) {
+            setUser((user) => ({...user, password: e.target.value}))
+        }else {
             setUser((user) => ({...user, password: ''}))
         }
     }
