@@ -1,10 +1,11 @@
 import type { NextPage } from 'next'
+import Login from './Login'
 // import Head from 'next/head'
 // import Image from 'next/image'
 
 const Home: NextPage = () => {
   return (
-    <div className="text-white">asdf</div>
+    <Login />
   )
 }
 
