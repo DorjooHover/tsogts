@@ -9,7 +9,10 @@ const Comment = ({comment , replies, currentUserEmail, deleteComment, activeComm
     // const timePassed = new Date() - new Date(comment.created_at) > fiveMinutes
     const isReplying = activeComment && activeComment.type === 'replying' && activeComment.comment_id === comment.comment_id
     const isEditing = activeComment && activeComment.type === 'editing' && activeComment.comment_id === comment.comment_id
-    const reply_id = comment && comment.parent_id ? parent_id : comment.comment_id
+    let reply_id 
+    if(comment) {
+    reply_id = comment.parent_id ? parent_id : comment.comment_id
+    }
     
     return (
         <div className="px-6 mx-4 py-4">
