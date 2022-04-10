@@ -4,7 +4,7 @@ export default function LessonExplanation({lesson, lessonId, setLessonId}) {
     return (
         <div className="rounded-md  shadow-lg shadow-zinc-500/10 mt-8">
             <h1 className='px-4 py-4 text-2xl font-semibold'>Хичээлүүд</h1>
-            {lesson.map((l, index) => {
+            {lesson && lesson.map((l, index) => {
                 if (index%2 ==0) {
 
                     return (
