@@ -1,10 +1,7 @@
 import * as React from "react";
-import Paper from "@mui/material/Paper";
-import InputBase from "@mui/material/InputBase";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import {Box, Typography} from "@mui/material";
-import { Search, Settings } from "@mui/icons-material";
+
 import Image from 'next/image'
 function Title(props: { title: string; }) {
   switch (Number(props.title)) {

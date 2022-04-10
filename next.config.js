@@ -8,6 +8,10 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  productionBrowserSourceMaps: false,
+  options: {
+    sourcemaps: 'production', // possible values can be production, development, or none
+  },
 };
 
 module.exports = nextConfig;

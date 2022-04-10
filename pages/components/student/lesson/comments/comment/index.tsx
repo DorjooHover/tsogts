@@ -15,7 +15,9 @@ const Comment = ({comment , replies, currentUserEmail, deleteComment, activeComm
     }
     
     return (
-        {comment && <div className="px-6 mx-4 py-4">
+        <>
+        {comment && 
+            <div className="px-6 mx-4 py-4">
         <div className="flex">
         <span className="w-28 rounded-full overflow-hidden mr-6"><img src="/img/students/badamaa.jpg" alt="" /></span>
         <div className="w-full">
@@ -52,7 +54,9 @@ const Comment = ({comment , replies, currentUserEmail, deleteComment, activeComm
             ))}
         </div>
 )}
-        </div>}
+        </div>
+    }
+        </>
     )
 }
 

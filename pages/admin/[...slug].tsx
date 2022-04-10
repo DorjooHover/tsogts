@@ -9,10 +9,7 @@ import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Navbar from "../../src/components/student/Navbar";
 import {
-  Dashboard,
   LocalLibrary,
-  Person,
-  EventAvailable,
   Menu,
   ChevronLeft,
   School,
