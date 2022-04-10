@@ -1,11 +1,13 @@
 module.exports = {
   purge: [
-    './src/components/**/*.{js, ts, tsx, jsx}',
-    './pages/**/*.{js,jsx,ts,tsx}',
-  ],
-  darkMode: false,
-  content: [],
+    './src/components/**/*.tsx',
+    './pages/**/*.tsx',
+    './public/**/*.html',
+  ], //add this line
   theme: {
+    extend: {},
+  },
+  variants: {
     extend: {},
   },
   plugins: [],

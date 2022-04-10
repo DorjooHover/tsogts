@@ -2,3 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --main-color:#2840e5;
+    --second-color: #6ec1e4;
+    --teal-color: #61ce70;
+    --bg-color_1: #f2f6ff;
+    --bg-color-2: #66cea9;
+    --bg-color-3: #6ec1e4;
+    --bg-color-4: #d7483e;
+}
+
+.nav {
+    transform: translateY(-80%);
+}
+
+.video {
+  
+}
+.video_container {
+    flex:3;
+}
+.sign {
+    flex: 4;
+}
+
+.lesson {
+    height: 489px;
+}
+.main_bg {
+    background-color: var(--main-color);
+}
+.navbar {
+    transform: translateY(-100%);
+}
+.shadow {
+    box-shadow: 0 10px 60px rgba(191, 211, 255, .38);
+}
+.text_color_1 {
+    color: var(--second-color);
+}
+.text_color_2 {
+    color: var(--teal-color);
+}
+
+.active {
+    border-bottom: 2px solid var(--main-color);
+    color: var(--main-color);
+}
+
+.bg_color_1 {
+    background-color: var(--bg-color_1);
+}
+.bg_color_2 {
+    background-color: var(--bg-color-2);
+}
+.bg_color_3 {
+    background-color: var(--bg-color-3);
+}
+.bg_color_4 {
+    background-color: var(--bg-color-4);
+}
+.btn_1 {
+    box-shadow: 0 10px 30px rgba(102, 206, 196, .35);
+}
+.btn_2 {
+    box-shadow: 0 10px 30px rgba(110, 193, 228, .35);
+}
+.btn_3 {
+    box-shadow: 0 10px 30px rgba(215, 72, 62, .35);
+}
+
+.box_shadow_1 {
+    box-shadow: 0 .46785rem 2.1875rem rgba(58, 196, 125, .03), 0 .25rem  .53125rem rgba(58, 196, 125, .03), 0 .25rem .53125rem rgba(58, 196, 125, .05), 0 .125rem .1875rem rgba(58, 196, 125, .03);
+    border:#3ac47d solid 1px ;
+}
+.box_shadow_2 {
+    box-shadow: 0 .46785rem 2.1875rem rgba(218, 98, 74, .03), 0 .25rem  .53125rem rgba(218, 98, 74, .03), 0 .25rem .53125rem rgba(218, 98, 74, .05), 0 .125rem .1875rem rgba(218, 98, 74, .03);
+    border:#da624a solid 1px ;
+}
+.box_shadow_3 {
+    box-shadow: 0 .46785rem 2.1875rem rgba(247, 185, 36, .03), 0 .25rem  .53125rem rgba(247, 185, 36, .03), 0 .25rem .53125rem rgba(247, 185, 36, .05), 0 .125rem .1875rem rgba(247, 185, 36, .03);
+    border:#f7b924 solid 1px ;
+}
+.box_shadow_4 {
+    box-shadow: 0 .46785rem 2.1875rem rgba(217,37,80, .03), 0 .25rem  .53125rem rgba(217,37,80, .03), 0 .25rem .53125rem rgba(217,37,80, .05), 0 .125rem .1875rem rgba(217,37,80, .03);
+    border:#d92550 solid 1px ;
+}

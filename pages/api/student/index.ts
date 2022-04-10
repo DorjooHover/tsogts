@@ -1,5 +1,7 @@
-import nc from 'next-connect';
-import { signup } from '../../../controller/student/student';
-const handler = nc();
-handler.post(signup)
-export default handler;
+import nc from 'next-connect'
+import {studentDashboard} from '../../../controller/student/student'
+
+const handler = nc()
+handler.get(studentDashboard)
+
+export default handler

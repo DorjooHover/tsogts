@@ -1,74 +1,92 @@
-import { compare, hash } from 'bcrypt';
-import cookie from 'cookie';
-import { sign } from 'jsonwebtoken';
-import { NextApiRequest, NextApiResponse } from 'next';
-import {secret} from '../../api/secret'
-import { executeQuery } from '../../config/db';
+import { NextApiRequest, NextApiResponse } from "next";
+import { executeQuery } from "../../config/db";
+import { hash } from "bcrypt";
+const studentDashboard = async(req: NextApiRequest, res: NextApiResponse) => {
+    try {
+        const data = await executeQuery(`
+        select *, t.name as teacher_name, lg.name as lesson_name from lesson_bundles lb
+        inner join l_groups lg on lg.group_id = lb.group_id
+        inner join lessons l on l.lesson_id = lb.lesson_id
+        inner join teachers t on t.teacher_id = lg.teacher_id
+        `,[])
+        res.send(data)
+    } catch (error) {
+        res.status(500).json({message: error})
+    }
+}
 
-   const login = async(req: NextApiRequest, res: NextApiResponse) => {
+const studentCourse = async(req: NextApiRequest, res: NextApiResponse) => {
     try {
-      const student:any = await executeQuery('select * from students where email = ?', [
-        req.query.slug
-      ]);
-      const password: any = req.query.password
-      compare(password, student[0].password, async function(err, result) {
-        if (!err && result ) {
-          await executeQuery(`update students set isLogin = 1 where email = ?`,[student[0].email])
-          const claims = { sub: student.student_id, myStudentEmail: student.email };
-          const jwt = sign(claims, secret, { expiresIn: '1h' });
-         
-          res.setHeader('Set-Cookie', cookie.serialize('auth', jwt, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV !== 'development',
-            sameSite: 'strict',
-            maxAge: 3600,
-            path: '/'
-          }))
-          res.json({message: 'Welcome back to the app!', result: result});
-        } else {
-          res.json({ message: {password}, result: result });
-        }
-      });
+        const data = await executeQuery(`
+        select *, t.name as teacher_name, lg.name as lesson_name from student_dashboard sd
+        inner join lesson_bundles lb on lb.group_id = sd.group_id
+        inner join lessons l on l.lesson_id = lb.lesson_id
+        inner join l_groups lg on lg.group_id = lb.group_id
+        inner join teachers t on t.teacher_id = lg.teacher_id
+        where student_id = ? and is_bought = 1
+        `, [req.query.pid])
+        res.send(data)
     } catch (error) {
-      res.status(500).send(req.body)
+        res.status(500).json({message: error})
     }
-   }
+}
 
-   const getStudentStatus = async(req: NextApiRequest, res: NextApiResponse) => {
-    try { 
-      const data = await executeQuery(`select * from students where email = ?`, [req.query.slug])
-      res.send(data)
-    } catch (error) {
-      res.status(500).json({message: error})
-    }
-  }
-  const logout = async(req: NextApiRequest, res: NextApiResponse) => {
+const deleteStudent = async(req: NextApiRequest, res: NextApiResponse) => {
     try {
-      await executeQuery(`update students set isLogin = 0 where email = ?`, [req.query.slug])
+        const studentData = await executeQuery(`
+        update students set email = null
+        where student_id = ?
+        `, [req.query.pid])
+        res.send(studentData)
     } catch (error) {
-      res.status(500).json({message: error})
+        res.status(500).json({message: error})
     }
-  }
-  const signup = async(req: NextApiRequest, res: NextApiResponse) => {
+}
+
+const updateStudent = async(req: NextApiRequest, res: NextApiResponse) => {
+    const {pid, email, name, password, phone} = req.query
     try {
-      const data:any = await executeQuery(`
-      select * from students where email = ?
-      `, [req.query.email])
-      if(data.length == 0) {
-        hash(req.query.password, 10, async function(err, hash) {
-          const statement = await executeQuery(`
-          insert into students (password, email, isLogin)
-          values(?, ?, 0)
-          `, [hash, req.query.email])
-          res.status(201).send(statement)
+        hash(password, 10, async function(err, hash) {
+            const statement = await executeQuery(`
+            update students set email = ?, name = ?, password = ?, phone = ?
+            where student_id = ?
+            `, [email, name, hash , phone, pid])
+            res.status(200).send(statement)
+          })
+    } catch (error) {
+        res.status(500).json({message:error})
+    }
+}
+
+const getAllStudents = async(req: NextApiRequest, res: NextApiResponse) => {
+    try {
+        const studentData = await executeQuery(`
+        select * from students
+        where email is not NULL
+        `,[])
+        res.send(studentData)
+    } catch (error) {
+        res.status(500).json({message: error})
+    }
+}
+
+const createStudentDashboard = async(req: NextApiRequest, res: NextApiResponse) => {
+    try {
+        await req.body.id.map((id) => {
+            if (req.body.method == 'add') {
+                executeQuery(`
+                insert into student_dashboard(student_id, group_id, is_bought)
+                values(? ,? ,1)
+                `, [id, req.query.pid])
+            } else {
+                executeQuery(`
+                update student_dashboard set is_bought = 0
+                where student_id = ? and group_id = ?
+                `, [id, req.query.pid])
+            }
         })
-      } else {
-        res.send({message: "Бүртгэлтэй имайл байна."})
-      }
     } catch (error) {
-      res.status(500).json({message: error})
+        res.status(500).json({message: error})
     }
-  }
-  export {login,  getStudentStatus, logout, signup}
-
-
+}
+export {studentDashboard,createStudentDashboard, studentCourse, deleteStudent, updateStudent, getAllStudents}
