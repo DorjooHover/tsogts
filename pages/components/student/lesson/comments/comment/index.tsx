@@ -3,8 +3,8 @@ import { Data } from ".."
 import CommentForm from "./comment"
 const Comment = ({comment , replies, currentUserEmail, deleteComment, activeComment, setActiveComment, parent_id, addComment, updateComment }: {comment: Data, replies: Data[], currentUserEmail: string, deleteComment: any, activeComment: any, setActiveComment: React.Dispatch<React.SetStateAction<any>>, parent_id: number, addComment: any, updateComment: any}) => {
     const canReply = Boolean(currentUserEmail)
-    const canEdit = currentUserEmail === comment.email
-    const canDelete = currentUserEmail === comment.email
+    const canEdit = comment ? currentUserEmail === comment.email : false
+    const canDelete = comment ? currentUserEmail === comment.email : false
     // const fiveMinutes = 300000
     // const timePassed = new Date() - new Date(comment.created_at) > fiveMinutes
     const isReplying = activeComment && activeComment.type === 'replying' && activeComment.comment_id === comment.comment_id
