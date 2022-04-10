@@ -8,6 +8,7 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  useFileSystemPublicRoutes: false,
   productionBrowserSourceMaps: false,
   options: {
     sourcemaps: 'production', // possible values can be production, development, or none
