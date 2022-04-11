@@ -2,7 +2,7 @@ import { compare, hash } from 'bcrypt';
 import cookie from 'cookie';
 import { sign } from 'jsonwebtoken';
 import { NextApiRequest, NextApiResponse } from 'next';
-import {secret} from '../../api/secret'
+import {secret} from '../../secret/secret'
 import { executeQuery } from '../../config/db';
 
    const login = async(req: NextApiRequest, res: NextApiResponse) => {
