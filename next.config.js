@@ -10,9 +10,7 @@ const nextConfig = {
   },
   useFileSystemPublicRoutes: false,
   productionBrowserSourceMaps: false,
-  options: {
-    sourcemaps: 'production', // possible values can be production, development, or none
-  },
+
 };
 
 module.exports = nextConfig;
