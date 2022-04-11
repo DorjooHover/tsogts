@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next build && pm2 start server.js --name \"3000 khanmongol.mn\"",
+    "start": "NODE_ENV=production next build && pm2 start server.js --name \"3000 khanmongol.mn\"",
     "lint": "next lint"
   },
   "dependencies": {
