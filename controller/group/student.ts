@@ -3,7 +3,6 @@ import { executeQuery } from "../../config/db";
 
 const addStudentToGroup = async(req: NextApiRequest, res: NextApiResponse) => {
     const {groupId, studentId} = req.body.params
-    console.log(req)
     try {
         const studentGroupData = await executeQuery(`
         insert into student_dashboard(student_id, group_id, is_bought)

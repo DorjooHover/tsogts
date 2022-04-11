@@ -23,7 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import {useState, useEffect} from 'react'
-import {useRouter} from 'next/router'
+// import {useRouter} from 'next/router'
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -131,13 +131,13 @@ EnhancedTableHead.propTypes = {
 };
 const handleDelete = async(numSelected, groupId) => {
 
-//   await fetch(`/api/lessonTeacher/${groupId}`, {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({id : numSelected, method: 'delete'})
-//   })
+  await fetch(`/api/lessonTeacher/${groupId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({id : numSelected, method: 'delete'})
+  })
 console.log(numSelected)
 }
 

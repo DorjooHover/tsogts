@@ -14,7 +14,6 @@ const getAllTeachers = async(req: NextApiRequest, res: NextApiResponse) => {
 
 const getGroupByTeacherId = async(req: NextApiRequest, res: NextApiResponse) => {
 
-    console.log(req.query, 'adsf')
     try {
         const groupData = await executeQuery(`
         select * from l_groups lg

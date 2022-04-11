@@ -34,7 +34,6 @@ const getLessonById = async(req: NextApiRequest, res:NextApiResponse) => {
 }
 
 const getLessonByIdForTeacher = async(req: NextApiRequest, res:NextApiResponse) => {
-    console.log(req.body, req.query)
     try {
         const lessonData = await executeQuery(`
         select * from lesson_bundles lb

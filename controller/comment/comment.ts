@@ -18,7 +18,6 @@ const createComment = async (req: NextApiRequest, res:NextApiResponse) => {
 
     const {comment} = JSON.parse(req.body)
     parentId === 0 ? parentId = null : null
-    console.log(parentId,comment)
     try {
         const commentData = await executeQuery(`
         insert into comments(email, parent_id, name, comment)
@@ -42,7 +41,6 @@ const deleteCommentById = async(req: NextApiRequest, res: NextApiResponse) => {
 }
 
 const updateCommentById = async(req: NextApiRequest, res: NextApiResponse) => {
-    console.log(req.body, req.query)
     const {comment, commentId} = JSON.parse(req.body) 
     try {
         await executeQuery(`

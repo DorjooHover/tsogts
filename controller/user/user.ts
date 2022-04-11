@@ -75,11 +75,10 @@ import { executeQuery } from '../../config/db';
       if(data.length == 0) {
         if(req.query.login == 'students') {
           hash(req.query.password, 10, async function(err, hash) {
-            const statement = await executeQuery(`
+           await executeQuery(`
             insert into students (password, email,name, phone, isLogin)
             values(?, ?,?,?, 0)
             `, [hash, req.query.email, name, phone])
-            console.log(statement)
             res.status(201).json({message: 'Амжилттай бүртгүүллээ.', result: true})
           })
         } else {

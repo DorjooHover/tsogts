@@ -33,7 +33,6 @@ const getAllGroups = async(req:NextApiRequest, res: NextApiResponse) => {
 
 const updateGroup = async(req:NextApiRequest, res:NextApiResponse) => {
     const {id, price, title, name, description} = req.body.params
-    console.log(id, price, title, name, description)
     try {
         const groupData = await executeQuery(`
         update l_groups set name = ?, teacher_id = ?, price = ? ,title = ?, description = ?

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
-import { useRouter } from "next/router"
+// import { useRouter } from "next/router"
 import axios from "axios"
-import {Devices, Videocam,Description, School, Title,CreditCard} from '@mui/icons-material'
+import {Devices, Description, School, Title,CreditCard} from '@mui/icons-material'
 import Image from 'next/image'
 interface Group {
     id: number,
@@ -12,7 +12,7 @@ interface Group {
 }
 export default function AdminGroup() {
 
-    const router = useRouter()
+    // const router = useRouter()
     const [teacher, setTeacher] = useState([])
     const [group, setGroup] = useState([])
     const [data, setData] = useState<Group>({id: null, price:null, name:'', title:'', description:'' })
@@ -33,7 +33,7 @@ export default function AdminGroup() {
     const handleGroup = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const newGroup = await axios.post('/api/group', {params: {id: data.id, price: data.price, title: data.title, description: data.description, name:data.name}})
+            await axios.post('/api/group', {params: {id: data.id, price: data.price, title: data.title, description: data.description, name:data.name}})
             // newGroup ? router.reload() : null
         } catch (error) {
             console.log(error)
