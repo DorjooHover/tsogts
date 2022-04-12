@@ -8,14 +8,11 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-  eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
-  },
-  useFileSystemPublicRoutes: false,
-  productionBrowserSourceMaps: false,
-  staticPageGenerationTimeout: 1000,
+  // eslint: {
+  //   // Warning: This allows production builds to successfully complete even if
+  //   // your project has ESLint errors.
+  //   ignoreDuringBuilds: true,
+  // },
 };
 
 module.exports = nextConfig;
