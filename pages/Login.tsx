@@ -18,7 +18,7 @@ export default function Login() {
     const handleLogin = async(e: { preventDefault: () => void; }) => {
         e.preventDefault();
         try {
-            const data = await axios.post(`$/api/user/${user.email}`, null, {params: {password: user.password, login: 'students'}})
+            const data = await axios.post(`/api/user/${user.email}`, null, {params: {password: user.password, login: 'students'}})
             setUser((user) => ({...user, message: data.data.message}));
             setAlert(data.data.result)
             data.data ? setView(true) : setView(false)
